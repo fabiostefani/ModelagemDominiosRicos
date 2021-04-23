@@ -83,4 +83,16 @@
 * Camada de Infraestrutura: é uma super camada que pode englobar, persistência, segurança, logging, IoC, Caching, etc....
     
     Dica: isole os detalhes, exemplo: connection  string, file paths, HTTP urls, etc....
-        
+
+# Modelam tática
+*   Domain Module: 
+    * Agregados:
+    * Entidades:
+    * Objetos de valor: 
+    * Fabricas:
+* Objetos de valor: agrega valor a alguma coisa. É uma coleção de dados individuais, destinado para ser uma coleção de atributos, imutável e com maior precisão do que os tipos primitivos.
+* Entidades: representam alguma coisa do mundo real. Deve possuir identidade, exclusiva para o objeto mapeado, possui estados e comportamentos e possui lógica de negócio.
+* Agregações: Conjunto de entidades usadas e referenciadas juntas, tratada como uma só quando o dado é alterado, possui uma raiz de agregação (aggregate root) e a raiz de agregação mantém a integridade das classes filhas. Uma entidade é mutável, diferente do objeto de valor. Regra: Utilize um unico repositorio por agregação.
+* Serviços de dominio: implementam lógica que não pertencam a um agregado e trabalham com multiplas entidades. Coordenam as atividades dos agregados e repositorios com o propósito de implementar a ação de negócio e podem consumir serviços da infra (envio de e-mail, eventos ou mensagens)
+* Repositorios: cuida da persistência. Possuem dependência direta com o meio de acesso a dados. Pode ser genérico, especializado herdando do genérico, pode conectar diretamente ao banco e trabalhar com ADO, pode utilizar ORM, pode consulta serviço externo. Ele somente deve retornar dados
+* Eventos de domínio: oferecem uma resiliência efetiva para expressar comportamentos.
