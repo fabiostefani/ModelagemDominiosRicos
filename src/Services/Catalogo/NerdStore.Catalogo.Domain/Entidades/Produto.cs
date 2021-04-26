@@ -1,10 +1,16 @@
 ﻿using System;
 using NerdStore.Core.DomainObjects;
 
-namespace NerdStore.Catalogo.Domain
+namespace NerdStore.Catalogo.Domain.Entidades
 {
     public class Produto : Entity, IAggregateRoot
     {
+        const string ValidacaoNome = "O campo Nome do produto não pode estar vazio";
+        const string ValidacaoDescricao = "O campo Descrição do produto não pode estar vazio";
+        const string ValidacaoCategoriaId = "O campo CategoriaId do produto não pode estar vazio";
+        const string ValidacaoValorZero = "O campo Valor do Produto não pode ser menor que 0 (zero)";
+        const string ValidacaoImagem = "O campo Imagem do produto não pode estar vazio";
+        const string ValidacaoEstoqueInsuficiente = "Estoque insuficiente";
         public Produto(string nome, string descricao, bool ativo, decimal valor, Guid categoriaId, DateTime dataCadastro, string imagem)
         {
             Nome = nome;
@@ -14,6 +20,8 @@ namespace NerdStore.Catalogo.Domain
             DataCadastro = dataCadastro;
             Imagem = imagem;
             CategoriaId = categoriaId;
+
+            Validar();
         }
 
         public string Nome { get; private set; }
@@ -38,12 +46,15 @@ namespace NerdStore.Catalogo.Domain
 
         public void AlterarDescricao(string descricao)
         {
+            Validacoes.ValidarSeVazio(Descricao, ValidacaoDescricao);
             Descricao = descricao;
         }
 
         public void DebitarEstoque(int quantidade)
         {
             if (quantidade < 0) quantidade += -1;
+            if (!PossuiEstoque(quantidade)) throw new DomainException(ValidacaoEstoqueInsuficiente);
+
             QuantidadeEstoque -= quantidade;
         }
 
@@ -59,6 +70,11 @@ namespace NerdStore.Catalogo.Domain
 
         public void Validar()
         {
+            Validacoes.ValidarSeVazio(Nome, ValidacaoNome);
+            Validacoes.ValidarSeVazio(Descricao, ValidacaoDescricao);
+            Validacoes.ValidarSeDiferente(CategoriaId, Guid.Empty, ValidacaoCategoriaId);
+            Validacoes.ValidarSeMenorIgualMinimo(Valor, 0, ValidacaoValorZero);
+            Validacoes.ValidarSeVazio(Imagem, ValidacaoImagem);
 
         }
 
