@@ -7,9 +7,9 @@ namespace NerdStore.Catalogo.Domain.Entidades
     public class Produto : Entity, IAggregateRoot
     {
         const string ValidacaoNome = "O campo Nome do produto não pode estar vazio";
-        const string ValidacaoDescricao = "O campo Descrição do produto não pode estar vazio";
+        const string ValidacaoDescricao = "O campo Descricao do produto não pode estar vazio";
         const string ValidacaoCategoriaId = "O campo CategoriaId do produto não pode estar vazio";
-        const string ValidacaoValorZero = "O campo Valor do Produto não pode ser menor que 0 (zero)";
+        const string ValidacaoValorZero = "O campo Valor do produto não pode ser menor que 0 (zero)";
         const string ValidacaoImagem = "O campo Imagem do produto não pode estar vazio";
         const string ValidacaoEstoqueInsuficiente = "Estoque insuficiente";
 
@@ -51,7 +51,7 @@ namespace NerdStore.Catalogo.Domain.Entidades
 
         public void AlterarDescricao(string descricao)
         {
-            Validacoes.ValidarSeVazio(Descricao, ValidacaoDescricao);
+            Validacoes.ValidarSeVazio(descricao, ValidacaoDescricao);
             Descricao = descricao;
         }
 
@@ -77,8 +77,8 @@ namespace NerdStore.Catalogo.Domain.Entidades
         {
             Validacoes.ValidarSeVazio(Nome, ValidacaoNome);
             Validacoes.ValidarSeVazio(Descricao, ValidacaoDescricao);
-            Validacoes.ValidarSeDiferente(CategoriaId, Guid.Empty, ValidacaoCategoriaId);
-            Validacoes.ValidarSeMenorIgualMinimo(Valor, 0, ValidacaoValorZero);
+            Validacoes.ValidarSeIgual(CategoriaId, Guid.Empty, ValidacaoCategoriaId);
+            Validacoes.ValidarSeMenorQue(Valor, 1, ValidacaoValorZero);
             Validacoes.ValidarSeVazio(Imagem, ValidacaoImagem);
 
         }
