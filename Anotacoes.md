@@ -96,3 +96,38 @@
 * Serviços de dominio: implementam lógica que não pertencam a um agregado e trabalham com multiplas entidades. Coordenam as atividades dos agregados e repositorios com o propósito de implementar a ação de negócio e podem consumir serviços da infra (envio de e-mail, eventos ou mensagens)
 * Repositorios: cuida da persistência. Possuem dependência direta com o meio de acesso a dados. Pode ser genérico, especializado herdando do genérico, pode conectar diretamente ao banco e trabalhar com ADO, pode utilizar ORM, pode consulta serviço externo. Ele somente deve retornar dados
 * Eventos de domínio: oferecem uma resiliência efetiva para expressar comportamentos.
+
+
+# Criação do Projeto via DotNet CLI
+
+* Para criar a solution. Utilizei a tag **--name** para definir o nome da minha solution.
+```
+dotnet new solution --name NerdStore
+```
+
+Depois de criar a solution, adicionei duas pastas. Uma **src** para colocar os fontes e uma **test** para ficar os testes.
+Fiz uma separação física ainda dentro da pasta **src** para separar os serviços dos webapps.
+
+A estrutura final das pasta ficou dessa forma.
+
+![estrutura](https://i.imgur.com/byD7x0q.png)
+
+Depois acessei a pasta *Catalogo* e criei uma ClassLib Domain.
+
+```
+dotnet new classlib --name NerdStore.Catalogo.Domain
+```
+
+E por fim, adicionei esse projeto ao *Solution*.
+
+```
+dotnet sln .\NerdStore.sln add .\src\Services\Catalogo\NerdStore.Catalogo.Domain\NerdStore.Catalogo.Domain.csproj
+```
+
+E assim fiz para os projetos necessários.
+
+Para adicionar uma referência a outros projetos via CLI, estando dentro da pasta do projeto que deseja adicionar a referência.
+
+```
+dotnet add .\NerdStore.Catalogo.Domain.csproj reference ..\..\Core\NerdStore.Core\NerdStore.Core.csproj
+```
