@@ -1,4 +1,5 @@
 ﻿using System;
+using NerdStore.Catalogo.Domain.DomainObjects;
 using NerdStore.Core.DomainObjects;
 
 namespace NerdStore.Catalogo.Domain.Entidades
@@ -11,18 +12,6 @@ namespace NerdStore.Catalogo.Domain.Entidades
         const string ValidacaoValorZero = "O campo Valor do Produto não pode ser menor que 0 (zero)";
         const string ValidacaoImagem = "O campo Imagem do produto não pode estar vazio";
         const string ValidacaoEstoqueInsuficiente = "Estoque insuficiente";
-        public Produto(string nome, string descricao, bool ativo, decimal valor, Guid categoriaId, DateTime dataCadastro, string imagem)
-        {
-            Nome = nome;
-            Descricao = descricao;
-            Ativo = ativo;
-            Valor = valor;
-            DataCadastro = dataCadastro;
-            Imagem = imagem;
-            CategoriaId = categoriaId;
-
-            Validar();
-        }
 
         public string Nome { get; private set; }
         public string Descricao { get; private set; }
@@ -34,6 +23,22 @@ namespace NerdStore.Catalogo.Domain.Entidades
 
         public Guid CategoriaId { get; private set; }
         public Categoria Categoria { get; private set; }
+
+        public Dimensoes Dimensoes { get; private set; }
+
+        public Produto(string nome, string descricao, bool ativo, decimal valor, Guid categoriaId, DateTime dataCadastro, string imagem, Dimensoes dimensoes)
+        {
+            Nome = nome;
+            Descricao = descricao;
+            Ativo = ativo;
+            Valor = valor;
+            DataCadastro = dataCadastro;
+            Imagem = imagem;
+            CategoriaId = categoriaId;
+            Dimensoes = dimensoes;
+
+            Validar();
+        }
 
         public void Ativar() => Ativo = true;
         public void Desativar() => Ativo = false;
