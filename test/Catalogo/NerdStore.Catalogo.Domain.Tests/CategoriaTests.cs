@@ -1,6 +1,6 @@
 using Xunit;
 using NerdStore.Core.DomainObjects;
-using NerdStore.Catalogo.Domain.Entidades;
+using NerdStore.Catalogo.Domain.Categorias;
 namespace NerdStore.Catalogo.Domain.Tests
 {
     public class CategoriaTests
