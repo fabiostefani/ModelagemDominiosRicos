@@ -131,3 +131,9 @@ Para adicionar uma referência a outros projetos via CLI, estando dentro da past
 ```
 dotnet add .\NerdStore.Catalogo.Domain.csproj reference ..\..\Core\NerdStore.Core\NerdStore.Core.csproj
 ```
+
+
+Para criar o projeto MVC para construir a interface
+```
+dotnet new mvc --name NerdStore.WebApp.MVC --auth Individual 
+```
