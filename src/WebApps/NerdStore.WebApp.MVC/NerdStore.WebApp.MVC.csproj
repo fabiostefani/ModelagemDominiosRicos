@@ -4,21 +4,26 @@
     <UserSecretsId>aspnet-NerdStore.WebApp.MVC-D3F3A603-FA1E-4888-9829-2532CFB33666</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true"/>
+    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.5"/>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.5"/>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.5"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.5"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5"/>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1"/>
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0"/>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc" Version="5.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Services\Catalogo\NerdStore.Catalogo.Application\NerdStore.Catalogo.Application.csproj"/>
-    <ProjectReference Include="..\..\Services\Catalogo\NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj"/>
-    <ProjectReference Include="..\..\Services\Core\NerdStore.Core\NerdStore.Core.csproj"/>
-    <ProjectReference Include="..\..\Services\Catalogo\NerdStore.Catalogo.Domain\NerdStore.Catalogo.Domain.csproj"/>
+    <ProjectReference Include="..\..\Services\Catalogo\NerdStore.Catalogo.Application\NerdStore.Catalogo.Application.csproj" />
+    <ProjectReference Include="..\..\Services\Catalogo\NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj" />
+    <ProjectReference Include="..\..\Services\Core\NerdStore.Core\NerdStore.Core.csproj" />
+    <ProjectReference Include="..\..\Services\Catalogo\NerdStore.Catalogo.Domain\NerdStore.Catalogo.Domain.csproj" />
   </ItemGroup>
 </Project>

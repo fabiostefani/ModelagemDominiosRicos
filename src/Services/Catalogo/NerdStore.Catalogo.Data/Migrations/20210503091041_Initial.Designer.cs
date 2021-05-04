@@ -5,32 +5,38 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NerdStore.Catalogo.Data;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace NerdStore.Catalogo.Data.Migrations
 {
     [DbContext(typeof(CatalogoContext))]
-    [Migration("20210501103353_Initial")]
+    [Migration("20210503091041_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.5");
+                .HasAnnotation("Relational:MaxIdentifierLength", 63)
+                .HasAnnotation("ProductVersion", "5.0.5")
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.Entity("NerdStore.Catalogo.Domain.Categorias.Categoria", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uuid");
 
                     b.Property<int>("Codigo")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("varchar(250)");
+
+                    b.Property<Guid>("Teste")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -41,16 +47,16 @@ namespace NerdStore.Catalogo.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uuid");
 
                     b.Property<bool>("Ativo")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("boolean");
 
                     b.Property<Guid>("CategoriaId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -65,10 +71,10 @@ namespace NerdStore.Catalogo.Data.Migrations
                         .HasColumnType("varchar(250)");
 
                     b.Property<int>("QuantidadeEstoque")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("Valor")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
@@ -88,17 +94,17 @@ namespace NerdStore.Catalogo.Data.Migrations
                     b.OwnsOne("NerdStore.Catalogo.Domain.DomainObjects.Dimensoes", "Dimensoes", b1 =>
                         {
                             b1.Property<Guid>("ProdutoId")
-                                .HasColumnType("TEXT");
+                                .HasColumnType("uuid");
 
-                            b1.Property<decimal>("Altura")
+                            b1.Property<int>("Altura")
                                 .HasColumnType("int")
                                 .HasColumnName("Altura");
 
-                            b1.Property<decimal>("Largura")
+                            b1.Property<int>("Largura")
                                 .HasColumnType("int")
                                 .HasColumnName("Largura");
 
-                            b1.Property<decimal>("Profundidade")
+                            b1.Property<int>("Profundidade")
                                 .HasColumnType("int")
                                 .HasColumnName("Profundidade");
 

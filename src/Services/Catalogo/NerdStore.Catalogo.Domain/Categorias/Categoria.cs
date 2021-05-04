@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NerdStore.Catalogo.Domain.Produtos;
 using NerdStore.Core.DomainObjects;
@@ -11,7 +12,6 @@ namespace NerdStore.Catalogo.Domain.Categorias
         
         public string Nome { get; private set; }
         public int Codigo { get; private set; }
-
         //EF relation
         public ICollection<Produto> Produtos { get; set; }
 
