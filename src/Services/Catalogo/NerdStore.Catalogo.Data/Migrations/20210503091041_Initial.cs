@@ -11,9 +11,10 @@ namespace NerdStore.Catalogo.Data.Migrations
                 name: "Categorias",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Nome = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: false),
-                    Codigo = table.Column<int>(type: "INTEGER", nullable: false)
+                    Codigo = table.Column<int>(type: "integer", nullable: false),
+                    Teste = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -24,18 +25,18 @@ namespace NerdStore.Catalogo.Data.Migrations
                 name: "Produtos",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Nome = table.Column<string>(type: "varchar(250)", nullable: false),
                     Descricao = table.Column<string>(type: "varchar(500)", nullable: false),
-                    Ativo = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Valor = table.Column<decimal>(type: "TEXT", nullable: false),
-                    DataCadastro = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Ativo = table.Column<bool>(type: "boolean", nullable: false),
+                    Valor = table.Column<decimal>(type: "numeric", nullable: false),
+                    DataCadastro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Imagem = table.Column<string>(type: "varchar(250)", nullable: false),
-                    QuantidadeEstoque = table.Column<int>(type: "INTEGER", nullable: false),
-                    CategoriaId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Altura = table.Column<decimal>(type: "int", nullable: true),
-                    Largura = table.Column<decimal>(type: "int", nullable: true),
-                    Profundidade = table.Column<decimal>(type: "int", nullable: true)
+                    QuantidadeEstoque = table.Column<int>(type: "integer", nullable: false),
+                    CategoriaId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Altura = table.Column<int>(type: "int", nullable: true),
+                    Largura = table.Column<int>(type: "int", nullable: true),
+                    Profundidade = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

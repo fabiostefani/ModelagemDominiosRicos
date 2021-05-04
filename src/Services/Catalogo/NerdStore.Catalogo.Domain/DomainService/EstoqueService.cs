@@ -1,8 +1,8 @@
-using System;
-using System.Threading.Tasks;
 using NerdStore.Catalogo.Domain.Produtos;
 using NerdStore.Catalogo.Domain.Produtos.Events;
 using NerdStore.Core.Bus;
+using System;
+using System.Threading.Tasks;
 
 namespace NerdStore.Catalogo.Domain.DomainService
 {
@@ -11,7 +11,7 @@ namespace NerdStore.Catalogo.Domain.DomainService
         private readonly IProdutoRepository _produtoRepository;
         private readonly IMediatrHandler _bus;
 
-        public EstoqueService(IProdutoRepository produtoRepository, 
+        public EstoqueService(IProdutoRepository produtoRepository,
                               IMediatrHandler bus)
         {
             _produtoRepository = produtoRepository;
@@ -21,8 +21,8 @@ namespace NerdStore.Catalogo.Domain.DomainService
         public async Task<bool> DebitarEstoque(Guid produtoId, int quantidade)
         {
             var produto = await _produtoRepository.ObterPorId(produtoId);
-            
-            if (produto == null) return false;
+
+            //if (produto == null) return false;
 
             if (!produto.PossuiEstoque(quantidade)) return false;
 
@@ -40,8 +40,13 @@ namespace NerdStore.Catalogo.Domain.DomainService
 
         public async Task<bool> ReporEstoque(Guid produtoId, int quantidade)
         {
+
             var produto = await _produtoRepository.ObterPorId(produtoId);
-            if (produto == null) return false;
+            //if (produto == null)
+            //{
+            //    return false;
+            //}
+
 
             produto.ReporEstoque(quantidade);
             _produtoRepository.Atualizar(produto);
