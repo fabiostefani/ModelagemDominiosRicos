@@ -137,3 +137,26 @@ Para criar o projeto MVC para construir a interface
 ```
 dotnet new mvc --name NerdStore.WebApp.MVC --auth Individual 
 ```
+
+# CQRS
+* Design Pattern
+* Alterações realizadas pelos Commands. Leitura realizada pela Queries
+* Provem a expressividade da aplicação, pois todo command representa a intenção de negócio
+* Promove consistência eventual dos dados quando possui um banco de leitura e outro de escrita com os mesmos dados.
+* Utilizado em arquiteturas Hexagonais, microservices ou aplicações com alta demanda de consumo de dados.
+* Commands
+    * Intenção de mudança no estado de uma entidade
+    * Expressivos e representam uma intenção de negócio
+* Queries
+    * Forma de obter dados de um banco ou origem de dados (Rest)
+
+# Teorema CAP
+* 3 fundamentos
+    * Consistência (COnsistency)
+    * Disponibilidade (Availability)
+    * Tolerância a falha (Partition Tolerance)
+* Somente posso trabalhar com dois fundamentos
+    Consistência <-> Disponibilidade (CA)
+    Consistência <-> Tolerância falhas (AP)
+    Disponibilidade <-> Tolerância falhas (CP)
+    Ideal é ter disponibilidade e tolerância a falhas. A consistência uma hora você vai ter (Consistência eventual)
