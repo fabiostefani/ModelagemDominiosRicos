@@ -1,6 +1,6 @@
 using NerdStore.Catalogo.Domain.Produtos;
 using NerdStore.Catalogo.Domain.Produtos.Events;
-using NerdStore.Core.Bus;
+using NerdStore.Core.Communication.Mediator;
 using System;
 using System.Threading.Tasks;
 
