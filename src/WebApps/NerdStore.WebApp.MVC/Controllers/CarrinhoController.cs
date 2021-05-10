@@ -51,8 +51,7 @@ namespace NerdStore.WebApp.MVC.Controllers
             {
                 TempData["Erro"] = "Produto com estoque insuficiente";
                 return RedirectToAction("ProdutoDetalhe", "Vitrine", new { id });
-            }
-            quantidade = 20;
+            }            
             var command = new AdicionarItemPedidoCommand(ClienteId, produto.Id, produto.Nome, quantidade, produto.Valor);            
             await _mediatorHandler.EnviarComando(command);
 
