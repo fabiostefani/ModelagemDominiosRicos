@@ -2,14 +2,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using NerdStore.Core.Communication.Mediator;
+using NerdStore.Core.Messages.CommonMessages.IntegrationEvents;
 
 namespace NerdStore.Vendas.Application.Events
 {
     public class PedidoEventHandler :
         INotificationHandler<PedidoRascunhoIniciadoEvent>,
         INotificationHandler<PedidoAtualizadoEvent>,
-        INotificationHandler<PedidoItemAdicionadoEvent>/*,
-        INotificationHandler<PedidoEstoqueRejeitadoEvent>,
+        INotificationHandler<PedidoItemAdicionadoEvent>,
+        INotificationHandler<PedidoEstoqueRejeitadoEvent>/*,
         INotificationHandler<PagamentoRealizadoEvent>,
         INotificationHandler<PagamentoRecusadoEvent>*/
     {
@@ -37,10 +38,12 @@ namespace NerdStore.Vendas.Application.Events
             return Task.CompletedTask;
         }
 
-        // public async Task Handle(PedidoEstoqueRejeitadoEvent message, CancellationToken cancellationToken)
-        // {
-        //     await _mediatorHandler.EnviarComando(new CancelarProcessamentoPedidoCommand(message.PedidoId, message.ClienteId));
-        // }
+        public Task Handle(PedidoEstoqueRejeitadoEvent message, CancellationToken cancellationToken)
+        {
+            //cancelar o processamento do pedido
+            //await _mediatorHandler.EnviarComando(new CancelarProcessamentoPedidoCommand(message.PedidoId, message.ClienteId));
+            return Task.CompletedTask;
+        }
 
         // public async Task Handle(PagamentoRealizadoEvent message, CancellationToken cancellationToken)
         // {
