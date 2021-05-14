@@ -6,6 +6,7 @@ using NerdStore.Catalogo.Domain;
 using NerdStore.Catalogo.Domain.Categorias;
 using NerdStore.Catalogo.Domain.Produtos;
 using NerdStore.Core.Data;
+using NerdStore.Core.Messages;
 
 namespace NerdStore.Catalogo.Data
 {
@@ -27,7 +28,7 @@ namespace NerdStore.Catalogo.Data
                 property.SetColumnType("varchar(100)");
 
             //base.OnModelCreating(modelBuilder);
-
+            modelBuilder.Ignore<Event>();
             //Irá mapear todas as entidades para o EF
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogoContext).Assembly);
         }

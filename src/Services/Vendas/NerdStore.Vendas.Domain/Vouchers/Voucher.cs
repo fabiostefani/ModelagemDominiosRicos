@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using FluentValidation;
+using FluentValidation.Results;
 using NerdStore.Core.DomainObjects;
 using NerdStore.Vendas.Domain.Pedidos;
 
@@ -21,37 +23,37 @@ namespace NerdStore.Vendas.Domain.Vouchers
         // EF Rel.
         public ICollection<Pedido> Pedidos { get; set; }
 
-        // internal ValidationResult ValidarSeAplicavel()
-        // {
-        //     return new VoucherAplicavelValidation().Validate(this);
-        // }
+        internal ValidationResult ValidarSeAplicavel()
+        {
+            return new VoucherAplicavelValidation().Validate(this);
+        }
     }
 
-    // public class VoucherAplicavelValidation : AbstractValidator<Voucher>
-    // {
+    public class VoucherAplicavelValidation : AbstractValidator<Voucher>
+    {
 
-    //     public VoucherAplicavelValidation()
-    //     {
-    //         RuleFor(c => c.DataValidade)
-    //             .Must(DataVencimentoSuperiorAtual)
-    //             .WithMessage("Este voucher está expirado.");
+        public VoucherAplicavelValidation()
+        {
+            RuleFor(c => c.DataValidade)
+                .Must(DataVencimentoSuperiorAtual)
+                .WithMessage("Este voucher está expirado.");
 
-    //         RuleFor(c => c.Ativo)
-    //             .Equal(true)
-    //             .WithMessage("Este voucher não é mais válido.");
+            RuleFor(c => c.Ativo)
+                .Equal(true)
+                .WithMessage("Este voucher não é mais válido.");
 
-    //         RuleFor(c => c.Utilizado)
-    //             .Equal(false)
-    //             .WithMessage("Este voucher já foi utilizado.");
+            RuleFor(c => c.Utilizado)
+                .Equal(false)
+                .WithMessage("Este voucher já foi utilizado.");
 
-    //         RuleFor(c => c.Quantidade)
-    //             .GreaterThan(0)
-    //             .WithMessage("Este voucher não está mais disponível");
-    //     }
+            RuleFor(c => c.Quantidade)
+                .GreaterThan(0)
+                .WithMessage("Este voucher não está mais disponível");
+        }
 
-    //     protected static bool DataVencimentoSuperiorAtual(DateTime dataValidade)
-    //     {
-    //         return dataValidade >= DateTime.Now;
-    //     }
-    // }
+        protected static bool DataVencimentoSuperiorAtual(DateTime dataValidade)
+        {
+            return dataValidade >= DateTime.Now;
+        }
+    }
 }

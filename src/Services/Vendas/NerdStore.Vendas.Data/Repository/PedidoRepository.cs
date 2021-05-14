@@ -33,7 +33,7 @@ namespace NerdStore.Vendas.Data.Repository
         public async Task<Pedido> ObterPedidoRascunhoPorClienteId(Guid clienteId)
         {
             var pedido = await _context.Pedidos.FirstOrDefaultAsync(p => p.ClienteId == clienteId && p.PedidoStatus == PedidoStatus.Rascunho);
-            if (pedido == null) return null;
+            //if (pedido == null) return null;
 
             //é como se fosse um lazyloading
             //carrega as associações sob demanda
