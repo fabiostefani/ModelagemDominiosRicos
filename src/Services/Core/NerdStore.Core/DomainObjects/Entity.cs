@@ -30,7 +30,7 @@ namespace NerdStore.Core.DomainObjects
             if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
                 return true;
 
-            if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
+            if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
                 return false;
 
             return a.Equals(b);
