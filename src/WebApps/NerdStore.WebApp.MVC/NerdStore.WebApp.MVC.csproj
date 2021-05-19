@@ -30,5 +30,6 @@
     <ProjectReference Include="..\..\Services\Pagamentos\NerdStore.Pagamentos.Business\NerdStore.Pagamentos.Business.csproj" />
     <ProjectReference Include="..\..\Services\Pagamentos\NerdStore.Pagamentos.AntiCorruption\NerdStore.Pagamentos.AntiCorruption.csproj" />
     <ProjectReference Include="..\..\Services\Pagamentos\NerdStore.Pagamentos.Data\NerdStore.Pagamentos.Data.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\EventSourcing\EventSourcing.csproj" />
   </ItemGroup>
 </Project>
