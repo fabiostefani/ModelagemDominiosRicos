@@ -172,3 +172,9 @@ docker-compose up
 # EventSourcing
 * Persistência dos eventos que ocorreram na entidade durante a vida dela.
 * EventStore para armazenar esses eventos que foram gerados.
+
+
+
+## GitFlow
+teste 1
+teste 1.1
